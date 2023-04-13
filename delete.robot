@@ -18,7 +18,7 @@ Post_CriandoUsuario
     Create Session   mysession  ${base_url}  verify=true
     ${endpoint}  Set Variable   /users/967159
     ${headers}=  Create dictionary    Authorization=${bearerToken}  Content-Type=application/json
-    ${response}=  Put On Session   mysession  ${endpoint}   headers=${headers}
+    ${response}=  Delete On Session   mysession  ${endpoint}   headers=${headers}
 
     log to console  ${response.headers}
     log to console  ${response.status_code} 
