@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.8.2 on linux)" generated="20230414 12:39:52.557" rpa="false" schemaversion="3">
+<suite id="s1" name="Post" source="/home/carolina/Documentos/automacao/automacaorobotframeworkapi/post.robot">
+<test id="s1-t1" name="Criar um usuario valido" line="16">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230414 12:39:52.667" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230414 12:39:52.666" endtime="20230414 12:39:52.667"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${endpoint}</var>
+<arg>/users</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230414 12:39:52.667" level="INFO">${endpoint} = /users</msg>
+<status status="PASS" starttime="20230414 12:39:52.667" endtime="20230414 12:39:52.667"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230414 12:39:52.668" level="INFO">${headers} = {'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230414 12:39:52.667" endtime="20230414 12:39:52.668"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${endpoint}</arg>
+<arg>data={"name": "teste de api com robotframework","email": "teste12345@teste123.com","gender": "male","status": "active"}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230414 12:39:53.173" level="INFO">POST Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json', 'Content-Length': '114'} 
+ body={"name": "teste de api com robotframework","email": "teste12345@teste123.com","gender": "male","status": "active"} 
+ </msg>
+<msg timestamp="20230414 12:39:53.174" level="INFO">POST Response : url=https://gorest.co.in/public/v2/users 
+ status=201, reason=Created 
+ headers={'Date': 'Fri, 14 Apr 2023 15:39:53 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0, private, must-revalidate', 'etag': 'W/"981a9c448fdd4ba4aad126aa4b86aa9e"', 'location': 'https://gorest.co.in/public/v2/users/978519', 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '89', 'x-ratelimit-reset': '1', 'x-request-id': '92e215bc-07d3-46b0-ba91-a0ec3b5a2642', 'x-runtime': '0.089372', 'x-xss-protection': '0', 'CF-Cache-Status': 'DYNAMIC', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=jmmIfqboHXB0WEhaDHeZ64qKCKJak79cvnerdN8Ywio5CA93fpPeja%2FKaA4x6iGdojZ6GpmbKp79Dh5a9qvru8ke0Ti5auCTIXQpJoatL5VmguQbtETKMt1YR8No3MHxJsf%2BdPNvN51DRUA%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '7b7d0b469f631af3-GRU', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"id":978519,"name":"teste de api com robotframework","email":"teste12345@teste123.com","gender":"male","status":"active"} 
+ </msg>
+<msg timestamp="20230414 12:39:53.174" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230414 12:39:52.668" endtime="20230414 12:39:53.174"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230414 12:39:53.175" endtime="20230414 12:39:53.178"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230414 12:39:53.178" endtime="20230414 12:39:53.181"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230414 12:39:53.181" endtime="20230414 12:39:53.184"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230414 12:39:53.187" level="INFO">${status_code} = 201</msg>
+<status status="PASS" starttime="20230414 12:39:53.184" endtime="20230414 12:39:53.187"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>201</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230414 12:39:53.188" endtime="20230414 12:39:53.189"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230414 12:39:53.192" level="INFO">${res_body} = {"id":978519,"name":"teste de api com robotframework","email":"teste12345@teste123.com","gender":"male","status":"active"}</msg>
+<status status="PASS" starttime="20230414 12:39:53.189" endtime="20230414 12:39:53.192"/>
+</kw>
+<tag>post</tag>
+<status status="PASS" starttime="20230414 12:39:52.666" endtime="20230414 12:39:53.193"/>
+</test>
+<status status="PASS" starttime="20230414 12:39:52.557" endtime="20230414 12:39:53.195"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">post</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Post">Post</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

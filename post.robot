@@ -13,12 +13,13 @@ ${bearerToken}      Bearer  b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682
 
 
 *** Test Cases ***
-Post_CriandoUsuario
+Criar um usuario valido
 
+    [Tags]  post
     Create Session   mysession  ${base_url}  verify=true
     ${endpoint}  Set Variable   /users
     ${headers}=  Create dictionary    Authorization=${bearerToken}  Content-Type=application/json
-    ${response}=  Post On Session   mysession  ${endpoint}  data={"name": "teste de api com robotframework","email": "teste123@teste.com","gender": "male","status": "active"}  headers=${headers}
+    ${response}=  Post On Session   mysession  ${endpoint}  data={"name": "teste de api com robotframework","email": "teste12345@teste123.com","gender": "male","status": "active"}  headers=${headers}
 
     log to console  ${response.headers}
     log to console  ${response.status_code} 
@@ -29,5 +30,6 @@ Post_CriandoUsuario
      Should Be Equal    ${status_code}  201
 
     ${res_body}=  convert to string      ${response.content}
+
 
    
