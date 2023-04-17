@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.8.2 on linux)" generated="20230417 15:34:15.262" rpa="false" schemaversion="3">
+<suite id="s1" name="Get" source="/home/carolina/Documentos/automacao/automacaorobotframeworkapi/get.robot">
+<test id="s1-t1" name="Obter pedido sobre a sessão existente" line="15">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230417 15:34:15.335" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230417 15:34:15.334" endtime="20230417 15:34:15.335"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${endpoint}</var>
+<arg>/users</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230417 15:34:15.335" level="INFO">${endpoint} = /users</msg>
+<status status="PASS" starttime="20230417 15:34:15.335" endtime="20230417 15:34:15.335"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230417 15:34:15.336" level="INFO">${headers} = {'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230417 15:34:15.335" endtime="20230417 15:34:15.336"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${endpoint}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230417 15:34:15.945" level="INFO">GET Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230417 15:34:15.945" level="INFO">GET Response : url=https://gorest.co.in/public/v2/users 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 17 Apr 2023 18:34:15 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0, private, must-revalidate', 'etag': 'W/"9338024f878e726dff2057fc8bb1fdc7"', 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-links-current': 'https://gorest.co.in/public/v2/users?page=1', 'x-links-next': 'https://gorest.co.in/public/v2/users?page=2', 'x-links-previous': '', 'x-pagination-limit': '10', 'x-pagination-page': '1', 'x-pagination-pages': '250', 'x-pagination-total': '2500', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '89', 'x-ratelimit-reset': '1', 'x-request-id': '3e868c82-6a52-4082-a5b8-8f0e695f2f71', 'x-runtime': '0.132445', 'x-xss-protection': '0', 'CF-Cache-Status': 'DYNAMIC', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=eJy896068UGq%2FPMHZajYjbA%2Fs2V6W8iNOqOGVJ4tCgrJtdC7umEtZv91uOX19QExzAyOIzSwllLfhbMDgO2QuSWlbZ92vhjbmLF4F0JBk6as766hXpLAHWcend6euxGV%2BPConJpIU5SxdVI%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '7b96c2d62ddca589-GRU', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=[{"id":1031871,"name":"Aanandinii Nayar","email":"nayar_aanandinii@greenfelder.test","gender":"female","status":"inactive"},{"id":1031870,"name":"Sachin Chopra","email":"sachin_chopra@wuckert.example","gender":"female","status":"active"},{"id":1030495,"name":"Prem Kaul","email":"kaul_prem@larson-cassin.example","gender":"male","status":"active"},{"id":1030494,"name":"Chandini Naik","email":"chandini_naik@ratke.example","gender":"male","status":"active"},{"id":1030493,"name":"Nagabhushanam Tagore DVM","email":"tagore_dvm_nagabhushanam@batz.example","gender":"male","status":"inactive"},{"id":1030492,"name":"Sen. Vasudeva Pilla","email":"vasudeva_pilla_sen@skiles.test","gender":"female","status":"active"},{"id":1030491,"name":"Bela Chattopadhyay","email":"chattopadhyay_bela@osinski-gulgowski.example","gender":"female","status":"active"},{"id":1030490,"name":"Deeksha Adiga MD","email":"deeksha_adiga_md@bosco.example","gender":"male","status":"inactive"},{"id":1030489,"name":"Param Asan","email":"param_asan@torp-hane.test","gender":"male","status":"inactive"},{"id":1030488,"name":"Deepesh Pandey","email":"pandey_deepesh@jaskolski.example","gender":"female","status":"inactive"}] 
+ </msg>
+<msg timestamp="20230417 15:34:15.946" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230417 15:34:15.336" endtime="20230417 15:34:15.946"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230417 15:34:15.947" endtime="20230417 15:34:15.948"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>OK</arg>
+<arg>${response.reason}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230417 15:34:15.949" endtime="20230417 15:34:15.951"/>
+</kw>
+<tag>get</tag>
+<status status="PASS" starttime="20230417 15:34:15.334" endtime="20230417 15:34:15.952"/>
+</test>
+<test id="s1-t2" name="Obter pedido deve ter obtido método" line="26">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230417 15:34:15.956" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230417 15:34:15.955" endtime="20230417 15:34:15.957"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${endpoint}</var>
+<arg>/users</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230417 15:34:15.958" level="INFO">${endpoint} = /users</msg>
+<status status="PASS" starttime="20230417 15:34:15.957" endtime="20230417 15:34:15.958"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230417 15:34:15.961" level="INFO">${headers} = {'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230417 15:34:15.959" endtime="20230417 15:34:15.961"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${endpoint}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230417 15:34:17.683" level="INFO">GET Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230417 15:34:17.683" level="INFO">GET Response : url=https://gorest.co.in/public/v2/users 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 17 Apr 2023 18:34:17 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0, private, must-revalidate', 'etag': 'W/"9338024f878e726dff2057fc8bb1fdc7"', 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-links-current': 'https://gorest.co.in/public/v2/users?page=1', 'x-links-next': 'https://gorest.co.in/public/v2/users?page=2', 'x-links-previous': '', 'x-pagination-limit': '10', 'x-pagination-page': '1', 'x-pagination-pages': '250', 'x-pagination-total': '2500', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '89', 'x-ratelimit-reset': '1', 'x-request-id': '844f8a09-8aa5-454f-8581-05bf871edbcd', 'x-runtime': '0.080570', 'x-xss-protection': '0', 'CF-Cache-Status': 'DYNAMIC', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=Kxz2hcRPxymWpps6GbwAISia%2BaPUM6V9YBFq4zXXLASAfzW%2Fslzv6Q2jtfdHOa%2F6fIM3%2FJYMauJW3ZjdbNoY4tWzOqLraig5%2B7D6YZq1bEzQe8ueBpHD%2BntqTVllemXHSgvx3Srm4FLdB5w%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '7b96c2da29eea5cd-GRU', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=[{"id":1031871,"name":"Aanandinii Nayar","email":"nayar_aanandinii@greenfelder.test","gender":"female","status":"inactive"},{"id":1031870,"name":"Sachin Chopra","email":"sachin_chopra@wuckert.example","gender":"female","status":"active"},{"id":1030495,"name":"Prem Kaul","email":"kaul_prem@larson-cassin.example","gender":"male","status":"active"},{"id":1030494,"name":"Chandini Naik","email":"chandini_naik@ratke.example","gender":"male","status":"active"},{"id":1030493,"name":"Nagabhushanam Tagore DVM","email":"tagore_dvm_nagabhushanam@batz.example","gender":"male","status":"inactive"},{"id":1030492,"name":"Sen. Vasudeva Pilla","email":"vasudeva_pilla_sen@skiles.test","gender":"female","status":"active"},{"id":1030491,"name":"Bela Chattopadhyay","email":"chattopadhyay_bela@osinski-gulgowski.example","gender":"female","status":"active"},{"id":1030490,"name":"Deeksha Adiga MD","email":"deeksha_adiga_md@bosco.example","gender":"male","status":"inactive"},{"id":1030489,"name":"Param Asan","email":"param_asan@torp-hane.test","gender":"male","status":"inactive"},{"id":1030488,"name":"Deepesh Pandey","email":"pandey_deepesh@jaskolski.example","gender":"female","status":"inactive"}] 
+ </msg>
+<msg timestamp="20230417 15:34:17.684" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230417 15:34:15.961" endtime="20230417 15:34:17.684"/>
+</kw>
+<tag>get</tag>
+<status status="PASS" starttime="20230417 15:34:15.953" endtime="20230417 15:34:17.685"/>
+</test>
+<test id="s1-t3" name="Obter Pedido Com Url Params Como Dicionário" line="36">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230417 15:34:17.686" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230417 15:34:17.686" endtime="20230417 15:34:17.687"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${endpoint}</var>
+<arg>/users</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230417 15:34:17.687" level="INFO">${endpoint} = /users</msg>
+<status status="PASS" starttime="20230417 15:34:17.687" endtime="20230417 15:34:17.687"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230417 15:34:17.688" level="INFO">${headers} = {'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230417 15:34:17.687" endtime="20230417 15:34:17.688"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${params}</var>
+<arg>param1=981617</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230417 15:34:17.688" level="INFO">${params} = {'param1': '981617'}</msg>
+<status status="PASS" starttime="20230417 15:34:17.688" endtime="20230417 15:34:17.688"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${endpoint}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230417 15:34:18.245" level="INFO">GET Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230417 15:34:18.246" level="INFO">GET Response : url=https://gorest.co.in/public/v2/users 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 17 Apr 2023 18:34:18 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0, private, must-revalidate', 'etag': 'W/"9338024f878e726dff2057fc8bb1fdc7"', 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-links-current': 'https://gorest.co.in/public/v2/users?page=1', 'x-links-next': 'https://gorest.co.in/public/v2/users?page=2', 'x-links-previous': '', 'x-pagination-limit': '10', 'x-pagination-page': '1', 'x-pagination-pages': '250', 'x-pagination-total': '2500', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '89', 'x-ratelimit-reset': '2', 'x-request-id': '27d1ef0d-07ef-46d1-b29d-4efae7528692', 'x-runtime': '0.082227', 'x-xss-protection': '0', 'CF-Cache-Status': 'DYNAMIC', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=j3zbfAR1%2FQMoKQBFCNrLdAe8PhQ%2FHe70uFhjcJu%2BkXrVjhRko7n0Lw5L7sNMVnlui%2B4J225xPi2DNuwtkyAqhEsZ8guW85HR3vTbMliH53%2BEb0j2L22%2Bzabw0vyFiKOs9PiBuqVpYpBSZgw%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '7b96c2e4ec68a56d-GRU', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=[{"id":1031871,"name":"Aanandinii Nayar","email":"nayar_aanandinii@greenfelder.test","gender":"female","status":"inactive"},{"id":1031870,"name":"Sachin Chopra","email":"sachin_chopra@wuckert.example","gender":"female","status":"active"},{"id":1030495,"name":"Prem Kaul","email":"kaul_prem@larson-cassin.example","gender":"male","status":"active"},{"id":1030494,"name":"Chandini Naik","email":"chandini_naik@ratke.example","gender":"male","status":"active"},{"id":1030493,"name":"Nagabhushanam Tagore DVM","email":"tagore_dvm_nagabhushanam@batz.example","gender":"male","status":"inactive"},{"id":1030492,"name":"Sen. Vasudeva Pilla","email":"vasudeva_pilla_sen@skiles.test","gender":"female","status":"active"},{"id":1030491,"name":"Bela Chattopadhyay","email":"chattopadhyay_bela@osinski-gulgowski.example","gender":"female","status":"active"},{"id":1030490,"name":"Deeksha Adiga MD","email":"deeksha_adiga_md@bosco.example","gender":"male","status":"inactive"},{"id":1030489,"name":"Param Asan","email":"param_asan@torp-hane.test","gender":"male","status":"inactive"},{"id":1030488,"name":"Deepesh Pandey","email":"pandey_deepesh@jaskolski.example","gender":"female","status":"inactive"}] 
+ </msg>
+<msg timestamp="20230417 15:34:18.246" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230417 15:34:17.688" endtime="20230417 15:34:18.247"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230417 15:34:18.247" endtime="20230417 15:34:18.249"/>
+</kw>
+<tag>get</tag>
+<status status="PASS" starttime="20230417 15:34:17.686" endtime="20230417 15:34:18.249"/>
+</test>
+<test id="s1-t4" name="Get_BuscarTodosOsUsuarios" line="49">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<arg>verify=true</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230417 15:34:18.254" level="INFO">Creating Session using : alias=mysession, url=https://gorest.co.in/public/v2, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20230417 15:34:18.252" endtime="20230417 15:34:18.254"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${endpoint}</var>
+<arg>/users</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20230417 15:34:18.256" level="INFO">${endpoint} = /users</msg>
+<status status="PASS" starttime="20230417 15:34:18.255" endtime="20230417 15:34:18.256"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${headers}</var>
+<arg>Authorization=${bearerToken}</arg>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230417 15:34:18.259" level="INFO">${headers} = {'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230417 15:34:18.257" endtime="20230417 15:34:18.259"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${endpoint}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230417 15:34:18.808" level="INFO">GET Request : url=https://gorest.co.in/public/v2/users 
+ path_url=/public/v2/users 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Authorization': 'Bearer b7bdc0485c1046c5906b92d052bd56f906a9e3120ccfc9c80682958325668fb3', 'Content-Type': 'application/json'} 
+ body=None 
+ </msg>
+<msg timestamp="20230417 15:34:18.809" level="INFO">GET Response : url=https://gorest.co.in/public/v2/users 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 17 Apr 2023 18:34:18 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Cache-Control': 'max-age=0, private, must-revalidate', 'etag': 'W/"9338024f878e726dff2057fc8bb1fdc7"', 'referrer-policy': 'strict-origin-when-cross-origin', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'x-download-options': 'noopen', 'x-frame-options': 'SAMEORIGIN', 'x-links-current': 'https://gorest.co.in/public/v2/users?page=1', 'x-links-next': 'https://gorest.co.in/public/v2/users?page=2', 'x-links-previous': '', 'x-pagination-limit': '10', 'x-pagination-page': '1', 'x-pagination-pages': '250', 'x-pagination-total': '2500', 'x-permitted-cross-domain-policies': 'none', 'x-ratelimit-limit': '90', 'x-ratelimit-remaining': '88', 'x-ratelimit-reset': '2', 'x-request-id': 'b33ea662-1c69-4f42-bae5-0dd09927a585', 'x-runtime': '0.074380', 'x-xss-protection': '0', 'CF-Cache-Status': 'DYNAMIC', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ZoiB10I%2F2wZIuREyPJZGoe5I5WaKOsHUtHHXDf0sZJQRBwENH8BSFLDJdOhUAbj4UREtira6q6KWbW3FpbphsSdbdzHapr2Zl8uQ%2FXLV4It7Sscald%2BWaPo0cAf5TPTMwC3vskgfyfMwUSk%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '7b96c2e88beea634-GRU', 'Content-Encoding': 'gzip', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=[{"id":1031871,"name":"Aanandinii Nayar","email":"nayar_aanandinii@greenfelder.test","gender":"female","status":"inactive"},{"id":1031870,"name":"Sachin Chopra","email":"sachin_chopra@wuckert.example","gender":"female","status":"active"},{"id":1030495,"name":"Prem Kaul","email":"kaul_prem@larson-cassin.example","gender":"male","status":"active"},{"id":1030494,"name":"Chandini Naik","email":"chandini_naik@ratke.example","gender":"male","status":"active"},{"id":1030493,"name":"Nagabhushanam Tagore DVM","email":"tagore_dvm_nagabhushanam@batz.example","gender":"male","status":"inactive"},{"id":1030492,"name":"Sen. Vasudeva Pilla","email":"vasudeva_pilla_sen@skiles.test","gender":"female","status":"active"},{"id":1030491,"name":"Bela Chattopadhyay","email":"chattopadhyay_bela@osinski-gulgowski.example","gender":"female","status":"active"},{"id":1030490,"name":"Deeksha Adiga MD","email":"deeksha_adiga_md@bosco.example","gender":"male","status":"inactive"},{"id":1030489,"name":"Param Asan","email":"param_asan@torp-hane.test","gender":"male","status":"inactive"},{"id":1030488,"name":"Deepesh Pandey","email":"pandey_deepesh@jaskolski.example","gender":"female","status":"inactive"}] 
+ </msg>
+<msg timestamp="20230417 15:34:18.810" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230417 15:34:18.259" endtime="20230417 15:34:18.810"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230417 15:34:18.811" endtime="20230417 15:34:18.814"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230417 15:34:18.814" endtime="20230417 15:34:18.818"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230417 15:34:18.819" endtime="20230417 15:34:18.821"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${status_code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230417 15:34:18.825" level="INFO">${status_code} = 200</msg>
+<status status="PASS" starttime="20230417 15:34:18.822" endtime="20230417 15:34:18.825"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230417 15:34:18.825" endtime="20230417 15:34:18.827"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230417 15:34:18.831" level="INFO">${res_body} = [{"id":1031871,"name":"Aanandinii Nayar","email":"nayar_aanandinii@greenfelder.test","gender":"female","status":"inactive"},{"id":1031870,"name":"Sachin Chopra","email":"sachin_chopra@wuckert.example"...</msg>
+<status status="PASS" starttime="20230417 15:34:18.828" endtime="20230417 15:34:18.831"/>
+</kw>
+<status status="PASS" starttime="20230417 15:34:18.251" endtime="20230417 15:34:18.831"/>
+</test>
+<status status="PASS" starttime="20230417 15:34:15.263" endtime="20230417 15:34:18.833"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="3" fail="0" skip="0">get</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Get">Get</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
